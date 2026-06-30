@@ -2,12 +2,15 @@ open Printf
 
 let template =
   format_of_string
-    "open Advent\n\n\
-     let solve input = (Ans.None, Ans.None)\n\n\
-     module S = struct\n\
-    \  let solve = solve\n\
-     end\n\n\
-     let () = Registry.register (%02d, %02d) (module S : Solver)\n"
+    {|open Advent
+
+let solve input = (Ans.None, Ans.None)
+
+module S = struct
+  type t = string list
+end
+
+let () = Registry.register (%02d, %02d) (module S : Solver)|}
 
 let exit msg =
   print_endline msg;
