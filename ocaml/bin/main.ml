@@ -22,8 +22,9 @@ let print_res res =
 
 let run_solver (module S : Solver) input =
   let t0 = Sys.time () in
+  let parsed = S.parse input in
   let res =
-    match S.solve input with
+    match S.solve parsed with
     | exception Bad_input s -> Error s
     | p1, p2 -> Ok (p1, p2)
   in

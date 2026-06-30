@@ -30,5 +30,8 @@ module Input = struct
 end
 
 module type Solver = sig
-  val solve : string list -> Ans.answer * Ans.answer
+  type t
+
+  val parse : string list -> t
+  val solve : t -> Ans.answer * Ans.answer
 end

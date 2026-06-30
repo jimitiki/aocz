@@ -16,16 +16,18 @@ let rec unique_visits ?(index = 0) ?(pos = (0, 0)) ?(stride = 1) tbl input =
     let index = index + stride in
     unique_visits ~index ~pos ~stride tbl input
 
-let solve input =
-  let input = Input.one_line input in
+let solve moves =
   let tbl = Hashtbl.create 1024 in
-  let p1 = unique_visits tbl input in
+  let p1 = unique_visits tbl moves in
   Hashtbl.clear tbl;
-  let _ = unique_visits ~stride:2 tbl input in
-  let p2 = unique_visits ~index:1 ~stride:2 tbl input in
+  let _ = unique_visits ~stride:2 tbl moves in
+  let p2 = unique_visits ~index:1 ~stride:2 tbl moves in
   (Ans.Int p1, Ans.Int p2)
 
 module S = struct
+  type t = string
+
+  let parse = Input.one_line
   let solve = solve
 end
 

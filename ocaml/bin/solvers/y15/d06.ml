@@ -69,6 +69,9 @@ let solve input =
   (p1, p2)
 
 module S = struct
+  type t = string list
+
+  let parse input = input
   let solve = solve
 end
 

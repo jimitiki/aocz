@@ -40,11 +40,12 @@ let ribbon (l, w, h) =
   let l2, w2, h2 = (l * 2, w * 2, h * 2) in
   vol + Int.min (Int.min (l2 + w2) (l2 + h2)) (w2 + h2)
 
-let solve input =
-  let dims = parse input in
-  (Ans.Int (sum paper dims), Ans.Int (sum ribbon dims))
+let solve dims = (Ans.Int (sum paper dims), Ans.Int (sum ribbon dims))
 
 module S = struct
+  type t = (int * int * int) list
+
+  let parse = parse
   let solve = solve
 end
 

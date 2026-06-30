@@ -30,6 +30,9 @@ let solve input =
   (Ans.Int p1, Ans.Int p2)
 
 module S = struct
+  type t = string list
+
+  let parse input = input
   let solve = solve
 end
 

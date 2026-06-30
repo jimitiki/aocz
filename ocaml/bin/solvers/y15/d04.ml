@@ -12,8 +12,7 @@ let rec find_prefix ?(index = 1) salt prefix =
     let index = index + 1 in
     find_prefix salt ~index prefix
 
-let solve input =
-  let salt = Input.one_line input in
+let solve salt =
   let zero5 = String.make 5 '0' in
   let p1 = find_prefix salt zero5 in
   let zero6 = String.make 6 '0' in
@@ -21,6 +20,9 @@ let solve input =
   (Ans.Int p1, Ans.Int p2)
 
 module S = struct
+  type t = string
+
+  let parse = Input.one_line
   let solve = solve
 end
 

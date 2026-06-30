@@ -26,11 +26,13 @@ let first_negative index floor len =
   else if floor < 0 then Some (Ans.Int index)
   else None
 
-let solve input =
-  let input = Input.one_line input in
-  (walk_floors input final_floor, walk_floors input first_negative)
+let solve moves =
+  (walk_floors moves final_floor, walk_floors moves first_negative)
 
 module S = struct
+  type t = string
+
+  let parse = Input.one_line
   let solve = solve
 end
 

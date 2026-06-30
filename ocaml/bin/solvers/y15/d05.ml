@@ -45,6 +45,9 @@ let solve input =
   (Ans.Int (count_nice is_nice1 input), Ans.Int (count_nice is_nice2 input))
 
 module S = struct
+  type t = string list
+
+  let parse input = input
   let solve = solve
 end
 

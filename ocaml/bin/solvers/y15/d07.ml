@@ -57,15 +57,20 @@ let eval_wire gates w =
   in
   eval_signal (Wire w)
 
-let solve input =
-  let gates = Hashtbl.create (List.length input) in
-  parse input gates;
+let solve gates =
   let s1 = eval_wire gates "a" in
   Hashtbl.replace gates "b" (Direct (Static s1));
   let s2 = eval_wire gates "a" in
   (Ans.Int s1, Ans.Int s2)
 
 module S = struct
+  type t = (string, gate) Hashtbl.t
+
+  let parse input =
+    let gates = Hashtbl.create (List.length input) in
+    parse input gates;
+    gates
+
   let solve = solve
 end
 

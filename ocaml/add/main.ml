@@ -8,6 +8,9 @@ let solve input = (Ans.None, Ans.None)
 
 module S = struct
   type t = string list
+
+  let parse input = input
+  let solve = solve
 end
 
 let () = Registry.register (%02d, %02d) (module S : Solver)|}
