@@ -21,8 +21,14 @@ fn solveInt(input: solver.Input, tools: solver.Tools) solver.Error!struct { ?u16
     defer visited.deinit(gpa);
     try visited.ensureTotalCapacity(gpa, @intCast(graph.len));
 
-    const shortest_path: u16 = shortestPath(graph, std.math.maxInt(u16), &visited, 0, 0);
-    const longest_path: u16 = longestPath(graph, &visited, 0, 0);
+    var shortest_path: u16 = std.math.maxInt(u16);
+    for (0..graph.len) |start| {
+        shortest_path = @min(shortest_path, shortestPath(graph, shortest_path, &visited, start, 0));
+    }
+    var longest_path: u16 = 0;
+    for (0..graph.len) |start| {
+        longest_path = @max(longest_path, longestPath(graph, &visited, start, 0));
+    }
     return .{ shortest_path, longest_path };
 }
 
